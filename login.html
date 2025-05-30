@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Login Page</title>
+  <link rel="stylesheet" href="login.css">
+  <link rel="icon" href="./images/Umt_logo-removebg-preview.png">
+  <style>
+    /* Reset styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+  
+  body {
+    min-height: 100vh;
+    background: 
+      linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+      url('./images/background.jpg') no-repeat center center;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+  }
+  
+  
+  /* Container for centering */
+  .container {
+    width: 100%;
+    max-width: 400px;
+  }
+  
+  /* Form box styling */
+  .form-box {
+    background: #fff;
+    padding: 30px 25px;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* Title */
+  .form-box h2 {
+    text-align: center;
+    margin-bottom: 25px;
+    color:#004080;
+  }
+  
+  /* Input group */
+  .input-group {
+    margin-bottom: 20px;
+  }
+  
+  /* Labels */
+  .input-group label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: bold;
+  }
+  
+  /* Inputs */
+  .input-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    outline: none;
+    transition: 0.3s;
+  }
+  
+  .input-group input:focus {
+    border-color:#5d7ee9;
+  }
+  
+  /* Submit Button */
+  .btn {
+    width: 100%;
+    padding: 12px;
+    background: #004080;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.3s ease;     
+  }
+
+  .btn a {
+    text-decoration: none;        /* Removes underline */
+    color: inherit;               /* Inherits text color from button */
+    display: block;               /* Makes link fill the button */
+    width: 100%;
+    height: 100%;
+  }
+  
+  .btn:hover {
+    background: #3c3ff0;
+  }
+  
+  /* Toggle text */
+  .toggle-text {
+    text-align: center;
+    margin-top: 15px;
+    font-size: 14px;
+  }
+  
+  .toggle-text span {
+    color: #5d7ee9;
+    font-weight: bold;
+    cursor: pointer;
+    text-decoration: underline;
+  }
+
+  /* Logo */
+
+  .logo-container {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .logo {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+    margin-bottom: 10px;
+  }
+  
+  
+  /* === Responsive Styles === */
+  @media (max-width: 480px) {
+    .form-box {
+      padding: 25px 20px;
+    }
+  
+    .form-box h2 {
+      font-size: 22px;
+    }
+  
+    .btn {
+      font-size: 14px;
+      padding: 10px;
+    }
+  
+    .toggle-text {
+      font-size: 13px;
+    }
+
+    @media (max-width: 480px) {
+        .logo {
+          width: 60px;
+          height: 60px;
+        }
+      }
+      
+  }
+  
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="form-box">
+        <div class="logo-container">
+            <img src="./images/Umt_logo-removebg-preview.png" alt="Second Cup Café Logo" class="logo">
+            <h2 id="form-title">Login</h2>
+          </div>
+          
+      <form id="auth-form">
+        <div class="input-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" required>
+        </div>
+        <div class="input-group">
+          <label for="password">Password</label>
+          <input type="password" id="password" required>
+        </div>
+        <div class="input-group" id="confirm-group" style="display: none;">
+          <label for="confirm-password">Confirm Password</label>
+          <input type="password" id="confirm-password">
+        </div>
+        <button type="submit" class="btn"><a href="./homepage.html">Login</a></button>
+        <p class="toggle-text">Don't have an account? <span id="toggle-link">Sign up</span></p>
+      </form>
+    </div>
+  </div>
+
+  <script>
+  // Get all necessary elements
+  const toggleLink = document.getElementById("toggle-link");
+  const formTitle = document.getElementById("form-title");
+  const confirmGroup = document.getElementById("confirm-group");
+  const submitBtn = document.querySelector(".btn");
+  const toggleText = document.querySelector(".toggle-text");
+
+  // This variable keeps track of whether the form is in login mode or signup mode
+  let isLogin = true;
+
+  // When the toggle link is clicked
+  toggleLink.addEventListener("click", () => {
+    // Change the mode
+    isLogin = !isLogin;
+
+    // Update form title
+    formTitle.textContent = isLogin ? "Login" : "Sign Up";
+
+    // Show or hide the Confirm Password field
+    confirmGroup.style.display = isLogin ? "none" : "block";
+
+    // Change the button text
+    submitBtn.textContent = isLogin ? "Login" : "Sign Up";
+
+    // Change the toggle text and link
+    toggleText.innerHTML = isLogin
+      ? `Don't have an account? <span id="toggle-link">Sign up</span>`
+      : `Already have an account? <span id="toggle-link">Login</span>`;
+
+    // Re-attach the event listener to the new toggle link
+    document.getElementById("toggle-link").addEventListener("click", () => toggleLink.click());
+  });
+
+
+  </script>
+  
+</body>
+</html>

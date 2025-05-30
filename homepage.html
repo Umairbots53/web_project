@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>UMT Lost & Found Portal</title>
+  <link rel="stylesheet" href="./homepage.css">
+  <link rel="icon" href="./images/Umt_logo-removebg-preview.png">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+      background: url('./images/background.jpg') no-repeat center center;
+      background-size: cover;
+    }
+
+    /* Header/Navbar */
+    .header {
+      background: #5d7ee9;
+      padding: 20px 10%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      position: relative;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: white;
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+    }
+
+    .nav a {
+      margin-left: 20px;
+      text-decoration: none;
+      color: white;
+      font-weight: 500;
+      position: relative;
+    }
+
+    .nav a:hover {
+      color: #1a237e;
+    }
+
+    /* Dropdown */
+    .dropdown {
+      position: relative;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: white;
+      min-width: 160px;
+      top: 100%;
+      left: 0;
+      box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+      z-index: 1000;
+      border-radius: 4px;
+    }
+
+    .dropdown-content a {
+      color: #333;
+      padding: 12px 16px;
+      text-decoration: none;
+      display: block;
+    }
+
+    .dropdown-content a:hover {
+      background-color: #f0f0f0;
+    }
+
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+
+    /* Hero */
+    .hero {
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 60px 20px;
+      text-align: center;
+    }
+
+    .hero-content h1 {
+      font-size: 2.5rem;
+      color: white;
+      margin-bottom: 20px;
+    }
+
+    .hero-content p {
+      font-size: 1.2rem;
+      margin-bottom: 30px;
+      color: white;
+    }
+
+    .hero-buttons .btn {
+      display: inline-block;
+      margin: 10px;
+      padding: 12px 24px;
+      background:#5d7ee9;
+      color: #fff;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: 0.3s ease;
+    }
+
+    .hero-buttons .btn:hover {
+      background: #303f9f;
+    }
+
+    /* Footer */
+    .footer {
+      background: rgba(0, 0, 0, 0.9);
+      padding: 30px 10%;
+      color: white;
+    }
+
+    .footer-content {
+      display: flex;
+      justify-content: space-evenly;
+      flex-wrap: wrap;
+    }
+
+    .footer-column {
+      flex: 1;
+      min-width: 200px;
+      margin: 10px 20px;
+    }
+
+    .footer-column h3,
+    .footer-column h4 {
+      margin-bottom: 10px;
+      color: wheat;
+    }
+
+    .footer-bottom {
+      text-align: center;
+      margin-top: 20px;
+      border-top: 1px solid #ccc;
+      padding-top: 10px;
+      font-size: 0.9rem;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .nav {
+        margin-top: 10px;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+
+      .hero-content h1 {
+        font-size: 2rem;
+      }
+
+      .hero-content p {
+        font-size: 1rem;
+      }
+
+      .hero-buttons .btn {
+        width: 100%;
+        margin: 10px 0;
+      }
+
+      .footer-content {
+        flex-direction: column;
+        gap: 20px;
+      }
+
+      .dropdown-content {
+        position: static;
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ✅ Normal Navbar at top -->
+  <header class="header">
+    <div class="logo">UMT Lost & Found</div>
+    <nav class="nav">
+      <a href="#">Home</a>
+      <a href="#">Report</a>
+
+      <!-- Dropdown for Items -->
+      <div class="dropdown">
+        <a href="#">Items ▾</a>
+        <div class="dropdown-content">
+          <a href="./lost.html">Lost Items</a>
+          <a href="./founditem.html">Found Items</a>
+        </div>
+      </div>
+
+      <a href="./chatpage.html">Chat</a>
+    </nav>
+  </header>
+
+  <!-- ✅ Hero Section taking full screen -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Welcome to the UMT <br> Lost & Found Portal</h1>
+      <p>Lost something? Found something? Help your fellow students by reporting lost or found items.</p>
+      <div class="hero-buttons">
+        <a href="./lost.html" class="btn">Report Lost Item</a>
+        <a href="./found.html" class="btn">View Found Items</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ✅ Footer after 100vh -->
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-column">
+        <h3>UMT Lost & Found</h3>
+        <p>Helping students reunite with their belongings on campus.</p>
+      </div>
+
+      <div class="footer-column">
+        <h4>Contact</h4>
+        <p>Email: support@umt.edu.pk</p>
+        <p>Phone: +92 42 35212801</p>
+        <p>Location: UMT Campus, Lahore</p>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>&copy; 2025 UMT Lost & Found. All rights reserved.</p>
+    </div>
+  </footer>
+
+</body>
+</html>

@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lost Item Submission</title>
+    <link rel="shortcut icon" href="umt-logo.png" type="image/x-icon">
+    <style>
+        body {
+            background-image: url('./images/background.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-attachment: fixed;
+            font-family: sans-serif;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            background-color: rgba(255, 255, 255, 0.95);
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            max-width: 600px;
+            margin: 40px;
+        }
+
+        .umt-logo {
+            display: block;
+            margin: 0 auto 20px auto;
+            max-width: 150px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .description {
+            text-align: center;
+            font-size: 15px;
+            margin-bottom: 25px;
+            color: #444;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #555;
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="date"],
+        input[type="email"],
+        input[type="tel"],
+        select,
+        textarea {
+            width: calc(100% - 22px);
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        input:focus,
+        textarea:focus,
+        select:focus {
+            outline: none;
+            box-shadow: 0 0 5px rgba(0, 86, 179, 0.4);
+        }
+
+        button {
+            background-color: #0056b3;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 18px;
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background-color: #004494;
+        }
+
+        #confirmationMsg {
+            margin-top: 15px;
+            color: green;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .drop-zone {
+            border: 2px dashed #ccc;
+            border-radius: 6px;
+            padding: 40px 20px;
+            text-align: center;
+            cursor: pointer;
+            color: #666;
+            transition: background-color 0.3s, border-color 0.3s;
+        }
+
+        .drop-zone:hover {
+            background-color: #f0f8ff;
+            border-color: #007bff;
+        }
+
+        .drop-zone.dragover {
+            background-color: #e6f7ff;
+            border-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="./images/Umt_logo-removebg-preview.png" alt="UMT Logo" class="umt-logo">
+        <h1>Lost Item Reporting Form</h1>
+
+        <form id="lostForm" action="#" method="POST" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="itemName">Item Name:</label>
+                <input type="text" id="itemName" name="itemName" required>
+            </div>
+
+            <div class="form-group">
+                <label for="category">Category:</label>
+                <select id="category" name="category" required>
+                    <option value="">Select a category</option>
+                    <option value="bottles">Bottles</option>
+                    <option value="electronics">Electronics</option>
+                    <option value="clothing">Clothing</option>
+                    <option value="documents">Documents</option>
+                    <option value="jewelry">Jewelry</option>
+                    <option value="bags">Bags</option>
+                    <option value="keys">Keys</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="dateLost">Date Lost:</label>
+                <input type="date" id="dateLost" name="dateLost" required>
+            </div>
+
+            <div class="form-group">
+                <label for="description">Description:</label>
+                <textarea id="description" name="description" rows="4" required></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="location">Location Lost:</label>
+                <input type="text" id="location" name="location" placeholder="e.g., UMT Cafeteria, Block A Lab" required>
+            </div>
+
+            <h3>Your Contact Information</h3>
+            <div class="form-group">
+                <label for="contactName">Name:</label>
+                <input type="text" id="contactName" name="contactName" required>
+            </div>
+
+            <div class="form-group">
+                <label for="contactEmail">Email:</label>
+                <input type="email" id="contactEmail" name="contactEmail" required>
+            </div>
+
+            <div class="form-group">
+                <label for="contactPhone">Phone Number (Optional):</label>
+                <input type="tel" id="contactPhone" name="contactPhone">
+            </div>
+
+            <div class="form-group">
+                <label for="itemImage">Upload Image (Optional):</label>
+                <div id="dropZone" class="drop-zone">
+                    <p>Drag & drop an image here, or click to select a file</p>
+                    <input type="file" id="itemImage" name="itemImage" accept="image/*" hidden>
+                </div>
+            </div>
+
+            <button type="submit">Submit Lost Item</button>
+        </form>
+
+        <p id="confirmationMsg"></p>
+    </div>
+
+    <script>
+        const dropZone = document.getElementById("dropZone");
+        const fileInput = document.getElementById("itemImage");
+
+        dropZone.addEventListener("click", () => {
+            fileInput.click();
+        });
+
+        dropZone.addEventListener("dragover", (e) => {
+            e.preventDefault();
+            dropZone.classList.add("dragover");
+        });
+
+        dropZone.addEventListener("dragleave", () => {
+            dropZone.classList.remove("dragover");
+        });
+
+        dropZone.addEventListener("drop", (e) => {
+            e.preventDefault();
+            dropZone.classList.remove("dragover");
+            const files = e.dataTransfer.files;
+            if (files.length > 0) {
+                fileInput.files = files;
+                dropZone.querySelector("p").textContent = files[0].name;
+            }
+        });
+
+        fileInput.addEventListener("change", () => {
+            if (fileInput.files.length > 0) {
+                dropZone.querySelector("p").textContent = fileInput.files[0].name;
+            }
+        });
+    </script>
+</body>
+</html>
